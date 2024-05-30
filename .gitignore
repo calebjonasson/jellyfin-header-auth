@@ -3,3 +3,5 @@ obj/
 .vs/
 .idea/
 artifacts
+/integration-test/jellyfin/
+/integration-test/jellyfin*.zip

@@ -1,0 +1,82 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "release",
+            "command": "dotnet",
+            "dependsOn": "clean-bin-dir",
+            "type": "shell",
+            "args": [
+                "publish",
+                "--configuration",
+                "Release",
+                "--output",
+                "bin"
+            ]
+        },
+        {
+            "label": "clean-bin-dir",
+            "command": "rm",
+            "type": "shell",
+            "args": [
+                "-rf",
+                "./bin"
+            ]
+        },
+        {
+            "label": "build-and-copy",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build",
+                "make-plugin-dir",
+                "copy-dll",
+            ],
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "${workspaceFolder}/Jellyfin.Plugin.JellyfinHeaderAuth.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        }, {
+            "label": "make-plugin-dir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "./integration-test/jellyfin/plugins/JellyfinHeaderAuth/"
+            ]
+        }, {
+            "label": "copy-dll",
+            "type": "shell",
+            "command": "cp",
+            "args": [
+                "./Jellyfin.Plugin.JellyfinHeaderAuth/bin/Debug/net8.0/Jellyfin.Plugin.JellyfinHeaderAuth.dll",
+                "./integration-test/jellyfin/plugins/JellyfinHeaderAuth/JellyfinHeaderAuth.dll"
+            ]
+        }, {
+            "label": "build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

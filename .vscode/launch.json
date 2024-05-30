@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "integration-test",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-and-copy",
+      "program": "dotnet",
+      "args": [
+        "${workspaceFolder}/integration-test/jellyfin/jellyfin.dll",
+        "--datadir",
+        "integration-test/datadir"
+      ],
+      "cwd": "${workspaceFolder}",
+    }
+  ]
+}

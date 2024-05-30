@@ -20,7 +20,7 @@ public class HeaderAuthPlugin : BasePlugin<PluginConfiguration>, IHasWebPages
 
     public override string Name => "Jellyfin-Header-Auth";
 
-    public override Guid Id => Guid.Parse("df78a0dc-a52a-4a9b-bae4-3f60390b83c4");
+    public override Guid Id => Guid.Parse("aa50c76e-63c6-4479-97e4-18299a29a3bb");
 
     public IEnumerable<PluginPageInfo> GetPages()
     {
